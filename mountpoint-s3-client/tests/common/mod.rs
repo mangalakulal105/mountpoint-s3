@@ -15,6 +15,8 @@ use rand::rngs::OsRng;
 use rand::RngCore;
 use std::ops::Range;
 
+pub mod creds;
+
 /// Enable tracing and CRT logging when running unit tests.
 #[ctor::ctor]
 fn init_tracing_subscriber() {
@@ -99,10 +101,6 @@ pub fn get_secondary_test_region() -> String {
 
 pub fn get_test_domain() -> String {
     std::env::var("S3_DOMAIN").unwrap_or(String::from("amazonaws.com"))
-}
-
-pub fn get_subsession_iam_role() -> String {
-    std::env::var("S3_SUBSESSION_IAM_ROLE").expect("Set S3_SUBSESSION_IAM_ROLE to run integration tests")
 }
 
 pub fn get_s3express_endpoint() -> String {
